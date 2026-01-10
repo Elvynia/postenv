@@ -41,7 +41,7 @@ if ! git config --global --get-all include.path | grep -qx "$MANAGED_GITCONFIG";
 fi
 
 # Packages
-apt install -y fzf
+apt-get install -y fzf
 
 if [ -t 1 ]; then
   echo
