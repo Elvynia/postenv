@@ -4,7 +4,8 @@ set -Eeuo pipefail
 # Bashrc stuff.
 BASHRC=$HOME/.bashrc
 touch $BASHRC
-cp ./linux/profile/.bash_* ~/
+cp ./linux/profile/.bash_* $HOME/
+chown $USER:$GROUP $HOME/.bash_*
 
 if ! grep -Eq '(^|\s)(\.|source)\s+~/.bash_aliases\b' "$BASHRC"; then
   {
