@@ -44,3 +44,9 @@ fi
 
 # Packages
 apt install -y fzf
+
+if [ -t 1 ]; then
+  echo
+  echo "Postenv success !"
+  echo "  --> source ~/.bashrc"
+fi
