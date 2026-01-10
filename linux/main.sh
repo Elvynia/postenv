@@ -21,8 +21,6 @@ if ! grep -Eq '(^|\s)(\.|source)\s+~/.bash_functions\b' "$BASHRC"; then
   } >> "$BASHRC"
 fi
 
-exec bash ~/.bashrc
-
 # Git config
 # Target location for managed git config
 GIT_CONFIG_DIR="$HOME/.config/git"
