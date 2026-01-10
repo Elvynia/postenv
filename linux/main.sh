@@ -2,9 +2,26 @@
 set -Eeuo pipefail
 
 # Bashrc stuff.
-cp -r ./linux/profile/.bash_* ~/
-cat ./linux/profile/.bashrc >> ~/.bashrc
-. ~/.bashrc
+BASHRC=$HOME/.bashrc
+touch $BASHRC
+cp ./linux/profile/.bash_* ~/
+
+if ! grep -Eq '(^|\s)(\.|source)\s+~/.bash_aliases\b' "$BASHRC"; then
+  {
+    echo
+    echo "# Loads bash aliases"
+    echo '[ -f ~/.bash_aliases ] && . ~/.bash_aliases'
+  } >> "$BASHRC"
+fi
+if ! grep -Eq '(^|\s)(\.|source)\s+~/.bash_functions\b' "$BASHRC"; then
+  {
+    echo
+    echo "# Loads bash functions"
+    echo '[ -f ~/.bash_functions ] && . ~/.bash_functions'
+  } >> "$BASHRC"
+fi
+
+exec bash ~/.bashrc
 
 # Git config
 # Target location for managed git config
