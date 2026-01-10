@@ -4,17 +4,22 @@
 # Fail fast, fail loud
 set -Eeuo pipefail
 
-# Capture all output
-LOG_FILE="/var/log/lv/postenv.log"
-exec > >(tee -a "$LOG_FILE") 2>&1
-
 # Disable interactive prompts
 export DEBIAN_FRONTEND=noninteractive
 
+USER="${SUDO_USER:-$(id -un)}"
+GROUP="$(id -gn "$USER")"
 # Ensure full root execution
 if [ "$EUID" -ne 0 ]; then
-  exec sudo -E bash "$0" "$@"
+export USER GROUP
+  exec sudo -E bash -s "$@" < /dev/stdin
 fi
+
+# Capture all output
+LOG_DIR="/var/log/lv"
+LOG_FILE="$LOG_DIR/postenv.log"
+mkdir -p "$LOG_DIR"
+exec > >(tee -a "$LOG_FILE") 2>&1
 
 # Detect operating system
 . /etc/os-release
@@ -50,8 +55,9 @@ if [ ! -d "$INSTALL_DIR/.git" ]; then
     --depth 1 \
     "$REPO_URL" \
     "$INSTALL_DIR"
+  chown -R "$USER:$GROUP" "$INSTALL_DIR"
 fi
 
 # Hand off to the real installer
-cd "$INSTALL_DIR"
-exec bash main.sh
+cd "$INSTALL_DIR" || exit 1
+exec bash linux/main.sh

@@ -2,8 +2,8 @@
 set -Eeuo pipefail
 
 # Bashrc stuff.
-cp -r .bashal .bashfn ~/
-cat .bashrc >> ~/.bashrc
+cp -r ./linux/profile/.bash_* ~/
+cat ./linux/profile/.bashrc >> ~/.bashrc
 
 # Git config
 # Target location for managed git config
