@@ -9,9 +9,10 @@ export DEBIAN_FRONTEND=noninteractive
 
 USER="${SUDO_USER:-$(id -un)}"
 GROUP="$(id -gn "$USER")"
+HOME="$(getent passwd "$USER" | cut -d: -f6)"
 # Ensure full root execution
 if [ "$EUID" -ne 0 ]; then
-export USER GROUP
+  export USER GROUP HOME
   exec sudo -E bash -s "$@" < /dev/stdin
 fi
 
