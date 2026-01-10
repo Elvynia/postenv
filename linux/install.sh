@@ -49,7 +49,11 @@ if ! command -v git >/dev/null 2>&1; then
 fi
 
 # Clone repository if not already present
-if [ ! -d "$INSTALL_DIR/.git" ]; then
+if [ -d "$INSTALL_DIR/.git" ]; then
+  echo "Updating repo"
+  git -C "$INSTALL_DIR" pull --rebase --autostash
+else
+  echo "Cloning repo"
   git clone \
     --branch "$REPO_VERSION" \
     --depth 1 \
