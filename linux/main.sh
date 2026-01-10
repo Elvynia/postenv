@@ -4,6 +4,7 @@ set -Eeuo pipefail
 # Bashrc stuff.
 cp -r ./linux/profile/.bash_* ~/
 cat ./linux/profile/.bashrc >> ~/.bashrc
+. ~/.bashrc
 
 # Git config
 # Target location for managed git config
