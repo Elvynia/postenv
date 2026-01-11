@@ -21,6 +21,13 @@ if ! grep -Eq '(^|\s)(\.|source)\s+~/.bash_functions\b' "$BASHRC"; then
     echo '[ -f ~/.bash_functions ] && . ~/.bash_functions'
   } >> "$BASHRC"
 fi
+if ! grep -E '(^|\s)eval "$(fzf --bash)"' "$BASHRC"; then
+  {
+    echo
+    echo "# fzf bash integration"
+    echo 'eval "$(fzf --bash)"'
+  } >> "$BASHRC"
+fi
 
 # Git config
 # Target location for managed git config
@@ -42,7 +49,7 @@ if ! git config --global --get-all include.path | grep -qx "$MANAGED_GITCONFIG";
 fi
 
 # Packages
-apt-get install -y fzf
+apt-get install -y fzf xclip bat
 
 if [ -t 1 ]; then
   echo

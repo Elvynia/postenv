@@ -27,3 +27,8 @@ alias psmem='ps auxf | sort -nr -k 4'
 alias pscpu='ps auxf | sort -nr -k 3'
 alias df='df -H'
 alias du='du -ch'
+
+# fzf
+alias hzf='history | fzf | cut -d" " -f4-`\e\C-e"'
+alias pzf='fzf --preview="bat --color=always {}"'
+alias xzf='fzf | xclip -selection clipboard'
