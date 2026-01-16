@@ -7,9 +7,9 @@ set -Eeuo pipefail
 # Disable interactive prompts
 export DEBIAN_FRONTEND=noninteractive
 
-USER="${USER:-$(id -un)}"
-GROUP="$(id -gn "$USER")"
-HOME="$(getent passwd "$USER" | cut -d: -f6)"
+WORKDIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+source "$WORKDIR/env.sh"
+
 echo "Using user=$USER, group=$GROUP, home=$HOME"
 export USER GROUP HOME
 # Ensure full root execution

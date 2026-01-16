@@ -4,8 +4,7 @@ set -Eeuo pipefail
 # Bashrc stuff.
 BASHRC=$HOME/.bashrc
 touch $BASHRC
-cp ./linux/profile/.bash_* $HOME/
-chown $USER:$GROUP $HOME/.bash_*
+bash linux/profile/index.sh
 
 if ! grep -Eq '(^|\s)(\.|source)\s+~/.bash_aliases\b' "$BASHRC"; then
   {
@@ -49,10 +48,4 @@ if ! git config --global --get-all include.path | grep -qx "$MANAGED_GITCONFIG";
 fi
 
 # Packages
-apt-get install -y fzf xclip bat
-
-if [ -t 1 ]; then
-  echo
-  echo "Postenv success !"
-  echo "  --> source ~/.bashrc"
-fi
+apt-get install -y fzf bat

@@ -12,14 +12,17 @@ alias j='jobs'
 alias n='nano'
 alias sun='sudo nano'
 alias update='apt-get update && apt-get dist-upgrade --yes'
-alias bashrc='. ~/.bashrc'
 alias bashal='nano ~/.bash_aliases'
+alias bashed='nano ~/.bashrc'
 alias bashfn='nano ~/.bash_functions'
+alias bashrc='. ~/.bashrc'
 
 # I/O
 alias ll='ls -la'
 alias ld='ls -d .*'
 alias mkdir='mkdir -pv'
+alias csync='rsync -avh --info=progress2'
+alias msync='csync --remove-source-files '
 
 # Stats
 alias netp='netstat -tulanp'
@@ -29,6 +32,11 @@ alias df='df -H'
 alias du='du -ch'
 
 # fzf
-alias hzf='history | fzf | cut -d" " -f4-`\e\C-e"'
+alias hzf='history | xzf'
 alias pzf='fzf --preview="bat --color=always {}"'
-alias xzf='fzf | xclip -selection clipboard'
+alias xzf='fzf | printf "\e]52;c;%s\a" "$(base64 -w0)"'
+
+# Dev on nanny
+alias postenv='curl -fsSL https://raw.githubusercontent.com/Elvynia/postenv/main/linux/install.sh | bash \
+    && . ~/.bashrc'
+alias postbash='. /opt/lv/postenv/linux/profile/index.sh'

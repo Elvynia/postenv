@@ -34,4 +34,6 @@
 	shpo = stash pop
 	shps = stash push --staged -m
 	shs = stash show
+    tl = tag -n
+    ta = tag -a -m
 	upstream = "!f() { git checkout \"$1\" && git pull && git checkout -b \"$2\"; }; f"
