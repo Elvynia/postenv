@@ -26,3 +26,11 @@ pwg() {
         | shuf \
         | tr -d '\n'
 }
+
+nxreset() {
+    nx daemon --stop
+    rm -rf .nx
+    rm -rf node_modules/.cache/nx
+    rm -rf ~/.nx
+    nx reset
+}

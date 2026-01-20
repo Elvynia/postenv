@@ -1,6 +1,8 @@
 [alias]
 	a = add .
+	ade = "!f() { git add $1'*'; }; f"
 	adf = "!f() { git add '*'$1'*'; }; f"
+	ads = "!f() { git add '*'$1; }; f"
 	adp = add -p
 	bm = branch --merged
 	bl = branch --all
@@ -11,8 +13,9 @@
 	clf = clean -fd
 	cm = commit -m
 	d = diff --color-words
+	dc = d --cached
 	df = "!f() { git d '*'$1'*'; }; f"
-	dc = diff --cached --color-words
+	dcf = "!f() { git dc '*'$1'*'; }; f"
 	graph=log --graph --oneline --all
 	l = log
 	pick = cherry-pick

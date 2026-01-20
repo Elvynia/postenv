@@ -17,6 +17,9 @@ alias bashed='nano ~/.bashrc'
 alias bashfn='nano ~/.bash_functions'
 alias bashrc='. ~/.bashrc'
 
+# Generate
+alias gensecret='openssl rand -base64 32 | tr -d "=" | tr "+/" "-_"'
+
 # I/O
 alias ll='ls -la'
 alias ld='ls -d .*'
