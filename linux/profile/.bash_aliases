@@ -42,4 +42,4 @@ alias xzf='fzf | printf "\e]52;c;%s\a" "$(base64 -w0)"'
 # Dev on nanny
 alias postenv='curl -fsSL https://raw.githubusercontent.com/Elvynia/postenv/main/linux/install.sh | bash \
     && . ~/.bashrc'
-alias postbash='. /opt/lv/postenv/linux/profile/index.sh'
+alias postbash=`. $HOME/postenv/linux/profile/index.sh`

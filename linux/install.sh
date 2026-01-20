@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Bootstrap installer entrypoint
 
 # Fail fast, fail loud
 set -Eeuo pipefail
@@ -7,8 +6,9 @@ set -Eeuo pipefail
 # Disable interactive prompts
 export DEBIAN_FRONTEND=noninteractive
 
-WORKDIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
-source "$WORKDIR/env.sh"
+: "${USER:=$(id -un)}"
+: "${GROUP:=$(id -gn "$USER")}"
+: "${HOME:=$(getent passwd "$USER" | cut -d: -f6)}"
 
 echo "Using user=$USER, group=$GROUP, home=$HOME"
 export USER GROUP HOME
@@ -36,7 +36,7 @@ case "$ID" in
 esac
 
 # Install location
-INSTALL_DIR="/opt/lv/postenv"
+INSTALL_DIR="$HOME/postenv"
 
 # Git repo
 REPO_URL="https://github.com/Elvynia/postenv.git"
