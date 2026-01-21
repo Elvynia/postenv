@@ -6,10 +6,12 @@ if ! command -v git >/dev/null 2>&1; then
 fi
 
 TMPDIR="$(mktemp -d -t postenv.XXXXXX)"
+POSTENV_PATH="$TMPDIR/sources"
 trap 'rm -rf "$TMPDIR"' EXIT
 
 REPO_URL="https://github.com/Elvynia/postenv.git"
 REPO_REF="main"
-git clone --depth 1 --branch "$REPO_REF" "$REPO_URL" "$TMPDIR/postenv"
+git clone --depth 1 --branch "$REPO_REF" "$REPO_URL" "$POSTENV_PATH"
 
-bash "$TMPDIR/postenv/linux/apply.sh"
+export POSTENV_PATH
+bash "$POSTENV_PATH/linux/apply.sh"

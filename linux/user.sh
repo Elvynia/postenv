@@ -14,6 +14,6 @@ sudo -E bash $POSTENV_PATH/linux/profile/install.sh \
   --dev "${POSTENV_DEV:-0}"
 
 log "Installing git config for user"
-sudo -u "$POSTENV_USER" \
+sudo -Eu "$POSTENV_USER" \
   HOME="$POSTENV_HOME" \
   bash $POSTENV_PATH/linux/git/install.sh
