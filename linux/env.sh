@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
+log() { printf '[%s] %s\n' "$(date +'%F %T')" "$*"; }
+
 POSTENV_USER="${SUDO_USER:-$(id -un)}"
 POSTENV_GROUP="$(id -gn "$POSTENV_USER")"
 POSTENV_HOME="$(getent passwd "$POSTENV_USER" | cut -d: -f6)"

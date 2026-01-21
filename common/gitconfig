@@ -18,6 +18,7 @@
 	dcf = "!f() { git dc '*'$1'*'; }; f"
 	graph=log --graph --oneline --all
 	l = log
+    ls = log --oneline --graph -10
 	pick = cherry-pick
 	pushf = push --force-with-lease
 	pullh = pull --allow-unrelated-histories

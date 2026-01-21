@@ -33,3 +33,7 @@ ensure '[ -f ~/.bash_postenv ] && . ~/.bash_postenv'
 chown "$TARGET_USER:$TARGET_USER" \
   "$TARGET_HOME"/.bash_* \
   "$BASHRC" || true
+
+if [ -t 1 ]; then
+    source ~/.bashrc
+fi
