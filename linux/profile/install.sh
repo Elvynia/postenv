@@ -16,7 +16,9 @@ install -m 0644 "$WORKDIR"/.bash_aliases "$TARGET_HOME/.bash_aliases"
 install -m 0644 "$WORKDIR"/.bash_functions "$TARGET_HOME/.bash_functions"
 
 if [[ "$DEV_MODE" == "1" ]]; then
-  install -m 0644 "$WORKDIR"/.bash_postenv "$TARGET_HOME/.bash_postenv"
+  install -m 0644 "$WORKDIR"/.bash_postenv_local "$TARGET_HOME/.bash_postenv"
+else
+  install -m 0644 "$WORKDIR"/.bash_postenv_remote "$TARGET_HOME/.bash_postenv"
 fi
 
 BASHRC="$TARGET_HOME/.bashrc"

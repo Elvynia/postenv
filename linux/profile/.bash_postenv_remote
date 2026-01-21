@@ -1,0 +1,3 @@
+alias postenv="curl -fsSL https://raw.githubusercontent.com/Elvynia/postenv/main/linux/bootstrap/remote.sh \
+    | bash \
+    && . ~/.bashrc"
