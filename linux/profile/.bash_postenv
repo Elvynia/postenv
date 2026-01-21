@@ -1,0 +1,11 @@
+export POSTENV_PATH="${POSTENV_PATH:-$HOME/postenv}"
+
+alias postenv="$POSTENV_PATH/linux/bootstrap/local.sh"
+alias postapply="$POSTENV_PATH/linux/apply.sh"
+
+alias postbash="$POSTENV_PATH/linux/profile/install.sh \
+  --home \$HOME --user \$USER --dev 1 && \
+  sudo bash $POSTENV_PATH/linux/profile/install.sh \
+    --home /root --user root --dev 1"
+
+alias postgit="$POSTENV_PATH/linux/git/install.sh"
